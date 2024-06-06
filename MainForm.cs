@@ -24,15 +24,15 @@ namespace A5_FileBackupCS
                 FileBackup backup = new FileBackup();
 
                 List<FileData> fileData = backup.StartBackup(filePaths);
-
-                string[] backupFileNames = FileManager.GetFilesPath(fileData, true);
-
                 lstTarget.Items.Clear();
                 lstSource.Items.Clear();
 
-                lstSource.Items.Add("");
+                lstSource.Items.AddRange(filePaths);
+                string[] backupFileNames = FileManager.GetFilesPath(fileData, true);
+
+                lstTarget.Items.AddRange(backupFileNames);
                 lstSource.Items.Add($"Time taken to back up: {backup.TimeTaken} milliseconds :)");
-                //back-up code
+                
             }
         }
 
@@ -47,11 +47,12 @@ namespace A5_FileBackupCS
                     FileBackupAsync backup = new FileBackupAsync();
                     List<FileData> list = await backup.StartBackupAsync(filePaths);
 
-                    string[] backupFileNames = FileManager.GetFilesPath(list, true);
                     lstTarget.Items.Clear();
                     lstSource.Items.Clear();
 
-                    lstSource.Items.Add("");
+                    lstSource.Items.AddRange(filePaths);
+                    string[] backupFileNames = FileManager.GetFilesPath(list, true);
+                    lstTarget.Items.AddRange(backupFileNames);
                     lstSource.Items.Add($"Time taken to back up: {backup.TimeTaken} milliseconds :)");
                 }
                 

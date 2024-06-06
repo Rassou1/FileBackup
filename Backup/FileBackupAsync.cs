@@ -66,6 +66,7 @@ namespace A5_FileBackupCS.Backup
             }
             
             File.Copy(sourceFilePath, targetFilePath, true);
+            
         }
     }
 }
